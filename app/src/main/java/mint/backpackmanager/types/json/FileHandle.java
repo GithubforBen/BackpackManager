@@ -1,12 +1,15 @@
 package mint.backpackmanager.types.json;
 
+import android.os.Environment;
 import android.util.JsonWriter;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,13 +28,29 @@ public class FileHandle {
         return null;
     }
 
-    public JSONObject createJSONFile(String path) {
+    public File createJSONFile(String name, JSONObject jsonObject) {
+        String state = Environment.getExternalStorageState();
+        if (!Environment.MEDIA_MOUNTED.equals(state)) {
+            return null;
+        }
+
+        File file = new File(MainActivity.getInstace().getExternalFilesDir("backpack/json/..."), name);
+
+        FileOutputStream fileOutputStream = null;
+
         try {
-            JSONObject jsonObject = MainActivity.getInstace().getJsonUtils().getJSONObjectFromFile(path);
-            return jsonObject;
-        } catch (JSONException e) {
+            file.createNewFile();
+            Toast.makeText(MainActivity.getInstace().getBaseContext(), file.getPath(), Toast.LENGTH_SHORT).show();
+            fileOutputStream = new FileOutputStream(file, true);
+
+            //string coud have another charset using getBytes(Charset)
+            fileOutputStream.write(jsonObject.toString().getBytes());
+
+            fileOutputStream.flush();
+            fileOutputStream.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return file;
     }
 }

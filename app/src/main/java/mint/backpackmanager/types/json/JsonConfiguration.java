@@ -12,7 +12,6 @@ public class JsonConfiguration {
 
     public JsonConfiguration() {
         file = new File("tmp/conf1.json");
-        jsonObject = MainActivity.getInstace().getFileHandle().createJSONFile(file.getPath());
     }
 
     public File getFile() {
