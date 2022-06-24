@@ -34,20 +34,25 @@ public class Bluetoothservice {
         // ... (Add other message types here as needed.)
 
     }
-
+    
+    //constructer
     public Bluetoothservice() {
-        dosmth();
+        //calls start method
+        start();
     }
 
-    private void dosmth() {
+    //starts the connectetThread
+    private void start() {
         thread = new ConnectedThread(MainActivity.getInstace().getBluetoothservice().thread.mmSocket);
     }
-
+    
+    //sends bytes to the connected device
+    //bytes are the bytes to send
     public void send(byte[] bytes){
         thread.write(bytes);
     }
 
-
+    //connected inner class thread
     private class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
