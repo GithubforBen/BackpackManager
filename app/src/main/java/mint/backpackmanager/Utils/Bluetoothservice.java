@@ -82,6 +82,8 @@ public class Bluetoothservice {
         }
 
         public void run() {
+            //https://developer.android.com/reference/android/os/Looper
+            //https://developer.android.com/reference/android/os/Handler#getLooper()
             mmBuffer = new byte[1024];
             int numBytes; // bytes returned from read()
 
