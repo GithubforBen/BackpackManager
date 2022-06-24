@@ -39,15 +39,17 @@ public class MainActivity extends AppCompatActivity {
     private Bluetoothservice bluetoothservice;
     private BluetoothAdapter bluetoothAdapter;
     private AddActivity addActivity;
-
+    
+    //create method of the app calls all important listeners + initilises variables
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //sets the content to the normal view
         setContentView(R.layout.activity_main);
         //if the variables are already set it won't trigger if the variables aren't set it will initialise the vars.
         if (!loaded) {
             load();
-            Toast.makeText(getBaseContext(), "LOL", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Loaded!", Toast.LENGTH_LONG).show();
         }
         if (!loaded) {
             System.out.println("d");
@@ -56,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
         //register events
         events();
-        Toast.makeText(getBaseContext(), "GG", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Registrated!", Toast.LENGTH_LONG).show();
 
     }
-
+    
+    //stop methot not used
     @Override
     protected void onStop() {
 
@@ -79,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         loaded = true;
     }
-
+    
+    //events initilises all the events
     private void events() {
+        //click listener for the add activity button
         ADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //bluetoothOFF();
     }
+    
     //getter and setter
     public static MainActivity getInstace() {
         return instace;
