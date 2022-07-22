@@ -1,6 +1,7 @@
 package mint.backpackmanager.types.json;
 
 import android.os.Environment;
+import android.util.Base64;
 import android.util.JsonWriter;
 import android.widget.Toast;
 
@@ -8,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -51,6 +53,18 @@ public class FileHandle {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return file;
+    }
+
+    public JSONObject getFromByte(byte[] bytes) throws JSONException {
+        JSONObject jsonObject = new JSONObject(new String(bytes));
+
+        return jsonObject;
+    }
+
+    public File getFromByteFile(byte[] bytes) {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
+        File file = new File(new String(bytes));
         return file;
     }
 }

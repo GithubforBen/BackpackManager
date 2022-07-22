@@ -43,7 +43,7 @@ public class Bluetoothservice {
 
     //starts the connectetThread
     private void start() {
-        thread = new ConnectedThread(MainActivity.getInstace().getBluetoothservice().thread.mmSocket);
+        thread = new ConnectedThread(MainActivity.getInstace().getBluetoothSocket());
     }
     
     //sends bytes to the connected device
